@@ -1,379 +1,726 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>L's Shop</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoHub | Elite GTAG Cheats</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #111111;
+            --accent: #7b2cbf;
+            --accent-light: #9d4edd;
+            --accent-glow: rgba(123, 44, 191, 0.6);
+            --text: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --neon-glow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(123, 44, 191, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(123, 44, 191, 0.1) 0%, transparent 25%);
+        }
 
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: linear-gradient(270deg, #000000, #0c0f1f, #1e3a8a, #000000);
-      background-size: 800% 800%;
-      animation: bgMove 60s ease infinite;
-      color: #e5e7eb;
-      overflow-x: hidden;
-      overflow-y: hidden; /* prevent scroll while popup shown */
-      position: relative;
-      min-height: 100vh;
-    }
+        /* Cyberpunk Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
 
-    /* Background gradient animation */
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 90%;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(123, 44, 191, 0.3);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
 
-    /* Popup */
-    .popup {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(22px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      transition: opacity 0.4s ease;
-    }
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: var(--neon-glow);
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
 
-    .popup[aria-hidden="true"] {
-      pointer-events: none;
-    }
+        .logo:hover {
+            text-shadow: 0 0 15px var(--accent-glow), 0 0 30px var(--accent-glow);
+            transform: scale(1.05);
+        }
 
-    .popup-content {
-      text-align: center;
-      padding: 3rem;
-      background: rgba(17, 24, 39, 0.9);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 24px;
-      max-width: 640px;
-      animation: fadeIn 1s ease;
-      box-shadow: 0 0 70px rgba(0,0,0,0.85);
-      backdrop-filter: blur(18px);
-      outline: none;
-      user-select: none;
-      transition: box-shadow 0.3s ease;
-    }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            margin-left: 50px;
+        }
 
-    .popup-content:focus {
-      box-shadow: 0 0 100px #3b82f6cc;
-    }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
 
-    .popup h2 {
-      font-size: 2.6rem;
-      margin-bottom: 1rem;
-      color: #3b82f6;
-      text-shadow: 0 0 12px #3b82f6cc;
-      animation: glowText 3s ease-in-out infinite alternate;
-      user-select: text;
-    }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
 
-    @keyframes glowText {
-      0% { text-shadow: 0 0 8px #3b82f6cc; }
-      100% { text-shadow: 0 0 28px #60a5faee; }
-    }
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
 
-    .popup p {
-      font-size: 1.2rem;
-      color: #cbd5e1;
-      user-select: text;
-    }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-    .popup button {
-      margin-top: 2.5rem;
-      background: #2563eb;
-      color: white;
-      border: none;
-      padding: 0.9rem 1.8rem;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.25s, box-shadow 0.3s, transform 0.15s;
-      box-shadow: 0 0 24px #2563eb80;
-      transform-origin: center center;
-      display: inline-block;
-      will-change: box-shadow, transform;
-      user-select: none;
-    }
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .popup button:hover {
-      background: #1e40af;
-      box-shadow: 0 0 36px #3b82f6cc;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(123, 44, 191, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(123, 44, 191, 0.2) 0%, transparent 40%);
+            z-index: -1;
+        }
 
-    .popup button:active {
-      transform: scale(0.95);
-      box-shadow: 0 0 18px #1e40afcc;
-    }
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-light);
+            text-shadow: var(--neon-glow);
+            animation: pulse 2s infinite alternate;
+        }
 
-    /* Header */
-    header {
-      background: linear-gradient(90deg, #0a1b5b, #052169 40%, #0a1b5b);
-      padding: 2.2rem 1rem;
-      text-align: center;
-      box-shadow:
-        0 0 30px #2563eb99,
-        inset 0 -4px 20px #3b82f633;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: saturate(180%) blur(8px);
-      border-radius: 0 0 20px 20px;
-      overflow: hidden;
-      user-select: none;
-    }
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
 
-    header h1 {
-      color: #3b82f6;
-      font-size: 2.8rem;
-      letter-spacing: 1.5px;
-      animation: glowText 4s ease-in-out infinite alternate;
-      position: relative;
-      overflow: hidden;
-    }
+        .btn {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(123, 44, 191, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            z-index: 1;
+        }
 
-    /* Removed the shine effect on header text */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-    /* Shop Grid */
-    .shop {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2.5rem;
-      padding: 5rem 2rem;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(123, 44, 191, 0.6);
+        }
 
-    .shop.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .btn:hover::before {
+            opacity: 1;
+        }
 
-    .mod-card {
-      background: rgba(31, 41, 55, 0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 2.4rem;
-      border-radius: 24px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.75);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-      user-select: none;
-    }
+        /* Mods Section */
+        .mods-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            z-index: 2000;
+            display: none;
+            padding: 100px 5%;
+            overflow-y: auto;
+        }
 
-    .mod-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 0 60px rgba(0,0,0,0.95);
-      animation: pulseGlow 3s infinite alternate ease-in-out;
-    }
+        .mods-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
 
-    @keyframes pulseGlow {
-      0% {
-        box-shadow: 0 0 60px rgba(0,0,0,0.95);
-      }
-      100% {
-        box-shadow: 0 0 80px rgba(59, 130, 246, 0.8);
-      }
-    }
+        .close-mods {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-    .mod-card h2 {
-      color: #60a5fa;
-      margin-bottom: 0.9rem;
-      font-size: 1.85rem;
-      user-select: text;
-    }
+        .close-mods:hover {
+            color: var(--accent-light);
+            transform: rotate(90deg);
+        }
 
-    .mod-card p {
-      color: #d1d5db;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      user-select: text;
-    }
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent-light);
+            text-shadow: var(--neon-glow);
+            position: relative;
+        }
 
-    .mod-card button {
-      margin-top: 1.8rem;
-      background: #3b82f6;
-      color: white;
-      border: none;
-      padding: 0.75rem 1.6rem;
-      border-radius: 10px;
-      font-size: 1.05rem;
-      cursor: pointer;
-      transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
-      box-shadow: 0 0 20px #3b82f680;
-      transform-origin: center center;
-      display: inline-block;
-      will-change: box-shadow, transform;
-      user-select: none;
-    }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
 
-    .mod-card button:hover {
-      background: #2563eb;
-      box-shadow: 0 0 30px #3b82f6cc;
-    }
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-    .mod-card button:active {
-      transform: scale(0.96);
-      box-shadow: 0 0 22px #1e40afcc;
-    }
+        .tab-btn {
+            background: rgba(20, 20, 20, 0.7);
+            border: none;
+            color: var(--text);
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(123, 44, 191, 0.3);
+            backdrop-filter: blur(5px);
+        }
 
-    /* Scroll to top button */
-    #scrollTopBtn {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      background: #2563eb;
-      border: none;
-      padding: 1rem 1.3rem;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 0 28px #2563ebcc;
-      color: white;
-      font-size: 1.7rem;
-      display: none;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      z-index: 1000;
-      user-select: none;
-    }
+        .tab-btn:hover {
+            color: var(--accent-light);
+            border-color: var(--accent);
+        }
 
-    #scrollTopBtn:hover {
-      background: #1e40af;
-      box-shadow: 0 0 40px #3b82f6ee;
-    }
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            box-shadow: 0 0 15px rgba(123, 44, 191, 0.5);
+            border: 1px solid var(--accent-light);
+        }
 
-    #scrollTopBtn:active {
-      transform: scale(0.95);
-      box-shadow: 0 0 25px #1e40afcc;
-    }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
+        .tab-content.active {
+            display: block;
+        }
 
-    @media(max-width: 500px) {
-      .popup h2 { font-size: 2rem; }
-      header h1 { font-size: 2.2rem; }
-      .mod-card h2 { font-size: 1.5rem; }
-      .mod-card p { font-size: 0.95rem; }
-    }
-  </style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(123, 44, 191, 0.3);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border: 1px solid var(--accent);
+            box-shadow: 0 15px 30px rgba(123, 44, 191, 0.3);
+        }
+
+        .product-image {
+            height: 220px;
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(123, 44, 191, 0.1) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+
+        .product-image span {
+            font-size: 4rem;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-image span {
+            transform: scale(1.2);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-light);
+            letter-spacing: 1px;
+        }
+
+        .product-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            min-height: 60px;
+        }
+
+        .get-btn {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            padding: 12px 0;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(123, 44, 191, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            z-index: 1;
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .get-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .get-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(123, 44, 191, 0.6);
+        }
+
+        .get-btn:hover::before {
+            opacity: 1;
+        }
+
+        .features-list {
+            margin-bottom: 1.5rem;
+            padding-left: 20px;
+        }
+
+        .features-list li {
+            margin-bottom: 8px;
+            position: relative;
+            list-style-type: none;
+        }
+
+        .features-list li::before {
+            content: '▹';
+            color: var(--accent);
+            position: absolute;
+            left: -20px;
+        }
+
+        footer {
+            background: rgba(10, 10, 10, 0.9);
+            padding: 50px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(123, 44, 191, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-light);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px var(--accent-glow); }
+            100% { text-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Floating animation */
+        .float {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+                margin-left: 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo animate__animated animate__fadeInLeft">MONOHUB</div>
+        <div class="nav-links">
+            <a href="#" class="animate__animated animate__fadeInDown" style="animation-delay: 0.1s">HOME</a>
+            <a href="#" id="mods-link" class="animate__animated animate__fadeInDown" style="animation-delay: 0.2s">MODS</a>
+            <a href="https://discord.gg/yxruActV" target="_blank" class="animate__animated animate__fadeInDown" style="animation-delay: 0.3s">DISCORD</a>
+        </div>
+    </nav>
 
-  <!-- Intro Popup -->
-  <div class="popup" id="introPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupDesc" tabindex="-1">
-    <div class="popup-content" tabindex="0">
-      <h2 id="popupTitle">Welcome to L's Shop</h2>
-      <p id="popupDesc">Essentials for casting mods and more.</p>
-      <button onclick="closePopup()" aria-label="Enter Shop">Enter Shop</button>
-    </div>
-  </div>
+    <section class="hero">
+        <h1 class="animate__animated animate__fadeIn">ELITE GTAG CHEATS</h1>
+        <p class="animate__animated animate__fadeIn animate__delay-1s">Undetected premium cheats with military-grade encryption and cutting-edge features for competitive dominance.</p>
+        <button id="explore-mods" class="btn animate__animated animate__fadeInUp animate__delay-2s">EXPLORE MODS</button>
+    </section>
 
-  <!-- Header -->
-  <header>
-    <h1>L's Shop</h1>
-  </header>
+    <!-- Mods Section (Hidden by default) -->
+    <section class="mods-section" id="mods-section">
+        <button class="close-mods">&times;</button>
 
-  <!-- Mod Shop Section -->
-  <section class="shop" id="shop" aria-live="polite" aria-atomic="true">
-    <div class="mod-card">
-      <h2>L's Casting Mod</h2>
-      <p>The best casting mod for anything. Scrims and normal gameplay. This casting mod has got it all.</p>
-      <button onclick="window.location.href='https://discord.gg/yxruActV'" aria-label="Buy L's Casting Mod">Buy Now</button>
-    </div>
+        <h2 class="section-title animate__animated animate__fadeIn">OUR CHEAT MODULES</h2>
 
-    <div class="mod-card">
-      <h2>Orb</h2>
-      <p>A clean sleek GUI with all the comp mods you need.</p>
-      <button onclick="window.location.href='https://discord.gg/yxruActV'" aria-label="Buy Orb">Buy Now</button>
-    </div>
-  </section>
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="casting">CASTING MODS</button>
+            <button class="tab-btn" data-tab="guis">GUIS</button>
+            <button class="tab-btn" data-tab="pull">PULL MODS</button>
+        </div>
 
-  <!-- Scroll to top button -->
-  <button id="scrollTopBtn" aria-label="Scroll to top">&#8679;</button>
+        <!-- Casting Mods Tab -->
+        <div id="casting" class="tab-content active">
+            <div class="product-grid">
+                <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                    <div class="product-image">
+                        <span class="float">🎣</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">LEG'S & L'S CASTING MOD</h3>
+                        <p class="product-desc">The Casting Mod That Has It All For Refs And More</p>
+                        <ul class="features-list">
+                            <li>Combined Leg's & L's technology</li>
+                            <li>Perfect trajectory calculations</li>
+                            <li>Advanced environment detection</li>
+                            <li>Undetectable by anti-cheat</li>
+                        </ul>
+                        <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <script>
-    // Disable scrolling initially (popup shown)
-    document.body.style.overflow = 'hidden';
+        <!-- GUIs Tab -->
+        <div id="guis" class="tab-content">
+            <div class="product-grid">
+                <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                    <div class="product-image">
+                        <span class="float">🔮</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">ORB GUI</h3>
+                        <p class="product-desc">The Comp Gui That Has It All</p>
+                        <ul class="features-list">
+                            <li>360° spherical interface</li>
+                            <li>Real-time stat visualization</li>
+                            <li>Customizable HUD elements</li>
+                            <li>Encrypted data streams</li>
+                        </ul>
+                        <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    const popup = document.getElementById('introPopup');
-    const popupContent = popup.querySelector('.popup-content');
+        <!-- Pull Mods Tab -->
+        <div id="pull" class="tab-content">
+            <div class="product-grid">
+                <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                    <div class="product-image">
+                        <span class="float">💪</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">LEG'S PULLMOD</h3>
+                        <p class="product-desc">Pull Mod That Passes All Checks</p>
+                        <ul class="features-list">
+                            <li>Leg-synchronized pulling</li>
+                            <li>Variable tension control</li>
+                            <li>Anti-snag system</li>
+                            <li>Zero-detection guarantee</li>
+                        </ul>
+                        <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function closePopup() {
-      popup.style.opacity = '0';
-      popup.setAttribute('aria-hidden', 'true');
-      setTimeout(() => {
-        popup.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    <footer class="animate__animated animate__fadeIn" style="animation-delay: 0.8s">
+        <div class="footer-links">
+            <a href="https://discord.gg/yxruActV" target="_blank">DISCORD</a>
+            <a href="#">TERMS</a>
+            <a href="#">PRIVACY</a>
+            <a href="#">CONTACT</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 MONOHUB. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
 
-        // Animate shop grid fade up quickly after popup closes
-        document.getElementById('shop').classList.add('visible');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script>
+        // Mods Section Toggle
+        const modsLink = document.getElementById('mods-link');
+        const exploreModsBtn = document.getElementById('explore-mods');
+        const modsSection = document.getElementById('mods-section');
+        const closeModsBtn = document.querySelector('.close-mods');
 
-        // Focus the first buy button after popup closes for accessibility
-        const firstBuyButton = document.querySelector('.mod-card button');
-        if (firstBuyButton) firstBuyButton.focus();
-      }, 400); // Faster fade out: 0.4s
-    }
-
-    // Close popup on Esc key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        if (popup.style.display !== 'none' && popup.style.opacity !== '0') {
-          closePopup();
+        function showModsSection() {
+            modsSection.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-      }
-    });
 
-    // Focus trap in popup
-    popup.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') {
-        const focusableElements = popup.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (e.shiftKey) { // Shift + Tab
-          if (document.activeElement === firstElement) {
-            e.preventDefault();
-            lastElement.focus();
-          }
-        } else { // Tab
-          if (document.activeElement === lastElement) {
-            e.preventDefault();
-            firstElement.focus();
-          }
+        function hideModsSection() {
+            modsSection.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
-      }
-    });
 
-    // Scroll to top button logic
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
+        modsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showModsSection();
+        });
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollTopBtn.style.display = 'block';
-      } else {
-        scrollTopBtn.style.display = 'none';
-      }
-    });
+        exploreModsBtn.addEventListener('click', function() {
+            showModsSection();
+        });
 
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+        closeModsBtn.addEventListener('click', function() {
+            hideModsSection();
+        });
+
+        // Tab System Functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button and corresponding content
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Product card hover animations
+        const cards = document.querySelectorAll('.product-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    scale: 1.02,
+                    y: -15,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+                gsap.to(card.querySelector('.product-image span'), {
+                    scale: 1.2,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    scale: 1,
+                    y: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+                gsap.to(card.querySelector('.product-image span'), {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+    </script>
 </body>
 </html>
