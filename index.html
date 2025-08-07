@@ -18,6 +18,10 @@
             --neon-glow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--primary);
@@ -115,7 +119,6 @@
             text-align: center;
             padding: 0 20px;
             position: relative;
-            overflow: hidden;
         }
 
         .hero::before {
@@ -190,79 +193,19 @@
             opacity: 1;
         }
 
-        /* Mods Section */
-        .mods-section {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary);
-            z-index: 2000;
-            display: none;
-            padding: 80px 5% 50px;
-            overflow-y: auto;
-        }
-
-        .mods-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .mods-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .mods-nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        .mods-nav a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
+        /* Main Content Area */
+        .main-content {
+            min-height: 100vh;
             position: relative;
-            padding: 5px 0;
-            transition: all 0.3s ease;
+            z-index: 1;
         }
 
-        .mods-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .mods-nav a:hover {
-            color: var(--accent-light);
-        }
-
-        .mods-nav a:hover::after {
-            width: 100%;
-        }
-
-        .close-mods {
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 5px 10px;
-        }
-
-        .close-mods:hover {
-            color: var(--accent-light);
-            transform: rotate(90deg);
+        /* Mods Section - Now positioned below hero */
+        .mods-section {
+            background-color: var(--secondary);
+            padding: 100px 5% 50px;
+            position: relative;
+            z-index: 2;
         }
 
         .section-title {
@@ -325,7 +268,6 @@
         .tab-content {
             display: none;
             animation: fadeIn 0.5s ease;
-            padding-top: 20px;
         }
 
         .tab-content.active {
@@ -538,8 +480,8 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Floating animation */
@@ -555,9 +497,13 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links, .mods-nav {
+            .nav-links {
                 gap: 15px;
                 margin-left: 20px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
             }
 
             .product-grid {
@@ -573,11 +519,6 @@
                 width: 100%;
                 max-width: 300px;
             }
-
-            .mods-header {
-                flex-direction: column;
-                gap: 20px;
-            }
         }
     </style>
 </head>
@@ -586,102 +527,95 @@
         <div class="logo animate__animated animate__fadeInLeft">MONOHUB</div>
         <div class="nav-links">
             <a href="#" class="animate__animated animate__fadeInDown" style="animation-delay: 0.1s">HOME</a>
-            <a href="#" id="mods-link" class="animate__animated animate__fadeInDown" style="animation-delay: 0.2s">MODS</a>
+            <a href="#mods" class="animate__animated animate__fadeInDown" style="animation-delay: 0.2s">MODS</a>
             <a href="https://discord.gg/yxruActV" target="_blank" class="animate__animated animate__fadeInDown" style="animation-delay: 0.3s">DISCORD</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1 class="animate__animated animate__fadeIn">ELITE GTAG CHEATS</h1>
-        <p class="animate__animated animate__fadeIn animate__delay-1s">Undetected premium cheats with military-grade encryption and cutting-edge features for competitive dominance.</p>
-        <button id="explore-mods" class="btn animate__animated animate__fadeInUp animate__delay-2s">EXPLORE MODS</button>
-    </section>
+    <div class="main-content">
+        <section class="hero">
+            <h1 class="animate__animated animate__fadeIn">MonoHub Cheats</h1>
+            <p class="animate__animated animate__fadeIn animate__delay-1s">Undetected premium cheats for competitive dominance and casting mods.</p>
+            <a href="#mods" class="btn animate__animated animate__fadeInUp animate__delay-2s">EXPLORE MODS</a>
+        </section>
 
-    <!-- Mods Section (Hidden by default) -->
-    <section class="mods-section" id="mods-section">
-        <div class="mods-header">
-            <div class="logo">MONOHUB</div>
-            <div class="mods-nav">
-                <a href="#" class="home-link">HOME</a>
-                <a href="https://discord.gg/yxruActV" target="_blank">DISCORD</a>
+        <!-- Mods Section - Now positioned below hero -->
+        <section class="mods-section" id="mods">
+            <h2 class="section-title animate__animated animate__fadeIn">OUR CHEAT MODULES</h2>
+
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="casting">CASTING MODS</button>
+                <button class="tab-btn" data-tab="guis">GUIS</button>
+                <button class="tab-btn" data-tab="pull">PULL MODS</button>
             </div>
-            <button class="close-mods">&times;</button>
-        </div>
 
-        <h2 class="section-title animate__animated animate__fadeIn">OUR CHEAT MODULES</h2>
-
-        <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="casting">CASTING MODS</button>
-            <button class="tab-btn" data-tab="guis">GUIS</button>
-            <button class="tab-btn" data-tab="pull">PULL MODS</button>
-        </div>
-
-        <!-- Casting Mods Tab -->
-        <div id="casting" class="tab-content active">
-            <div class="product-grid">
-                <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
-                    <div class="product-image">
-                        <span class="float">🎣</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">LEG'S & L'S CASTING MOD</h3>
-                        <p class="product-desc">The Casting Mod That Has It All For Refs And More</p>
-                        <ul class="features-list">
-                            <li>Combined Leg's & L's technology</li>
-                            <li>Perfect trajectory calculations</li>
-                            <li>Advanced environment detection</li>
-                            <li>Undetectable by anti-cheat</li>
-                        </ul>
-                        <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+            <!-- Casting Mods Tab -->
+            <div id="casting" class="tab-content active">
+                <div class="product-grid">
+                    <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                        <div class="product-image">
+                            <span class="float">🎣</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">LEG'S & L'S CASTING MOD</h3>
+                            <p class="product-desc">The Casting Mod That Has It All For Refs And More</p>
+                            <ul class="features-list">
+                                <li>Cool Nametags</li>
+                                <li>Best Camera</li>
+                                <li>Easy for beginners</li>
+                                <li>For scrims and more</li>
+                            </ul>
+                            <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- GUIs Tab -->
-        <div id="guis" class="tab-content">
-            <div class="product-grid">
-                <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
-                    <div class="product-image">
-                        <span class="float">🔮</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">ORB GUI</h3>
-                        <p class="product-desc">The Comp Gui That Has It All</p>
-                        <ul class="features-list">
-                            <li>360° spherical interface</li>
-                            <li>Real-time stat visualization</li>
-                            <li>Customizable HUD elements</li>
-                            <li>Encrypted data streams</li>
-                        </ul>
-                        <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+            <!-- GUIs Tab -->
+            <div id="guis" class="tab-content">
+                <div class="product-grid">
+                    <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                        <div class="product-image">
+                            <span class="float">🔮</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">ORBV1 GUI</h3>
+                            <p class="product-desc">The Comp Gui That Has It All</p>
+                            <ul class="features-list">
+                                <li>All the comp cheats you need</li>
+                                <li>Real predictions</li>
+                                <li>Funny mods</li>
+                                <li>Undetectable by anti-cheat</li>
+                            </ul>
+                            <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Pull Mods Tab -->
-        <div id="pull" class="tab-content">
-            <div class="product-grid">
-                <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
-                    <div class="product-image">
-                        <span class="float">💪</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">LEG'S PULLMOD</h3>
-                        <p class="product-desc">Pull Mod That Passes All Checks</p>
-                        <ul class="features-list">
-                            <li>Leg-synchronized pulling</li>
-                            <li>Variable tension control</li>
-                            <li>Anti-snag system</li>
-                            <li>Zero-detection guarantee</li>
-                        </ul>
-                        <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+            <!-- Pull Mods Tab -->
+            <div id="pull" class="tab-content">
+                <div class="product-grid">
+                    <div class="product-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                        <div class="product-image">
+                            <span class="float">💪</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">LEG'S PULLMOD</h3>
+                            <p class="product-desc">Pull Mod That Passes All Checks</p>
+                            <ul class="features-list">
+                                <li>Real pull</li>
+                                <li>Uncheckable</li>
+                                <li>Little sliders</li>
+                                <li>Realism</li>
+                            </ul>
+                            <button class="get-btn" onclick="window.open('https://discord.gg/yxruActV', '_blank')">GET</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <footer class="animate__animated animate__fadeIn" style="animation-delay: 0.8s">
         <div class="footer-links">
@@ -697,43 +631,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script>
-        // Mods Section Toggle
-        const modsLink = document.getElementById('mods-link');
-        const exploreModsBtn = document.getElementById('explore-mods');
-        const modsSection = document.getElementById('mods-section');
-        const closeModsBtn = document.querySelector('.close-mods');
-        const homeLink = document.querySelector('.home-link');
-
-        function showModsSection() {
-            modsSection.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            // Scroll to top of mods section
-            modsSection.scrollTo(0, 0);
-        }
-
-        function hideModsSection() {
-            modsSection.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        modsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            showModsSection();
-        });
-
-        exploreModsBtn.addEventListener('click', function() {
-            showModsSection();
-        });
-
-        closeModsBtn.addEventListener('click', function() {
-            hideModsSection();
-        });
-
-        homeLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            hideModsSection();
-        });
-
         // Tab System Functionality
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
@@ -749,9 +646,6 @@
                 // Add active class to clicked button and corresponding content
                 this.classList.add('active');
                 document.getElementById(tabId).classList.add('active');
-
-                // Scroll to top of tab content
-                document.getElementById(tabId).scrollIntoView({ behavior: 'smooth' });
             });
         });
 
@@ -782,6 +676,16 @@
                     scale: 1,
                     duration: 0.3,
                     ease: "power2.out"
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
             });
         });
