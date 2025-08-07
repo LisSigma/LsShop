@@ -200,7 +200,7 @@
             background-color: var(--primary);
             z-index: 2000;
             display: none;
-            padding: 100px 5%;
+            padding: 80px 5% 50px;
             overflow-y: auto;
         }
 
@@ -209,16 +209,55 @@
             animation: fadeIn 0.5s ease;
         }
 
-        .close-mods {
+        .mods-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .mods-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .mods-nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .mods-nav a::after {
+            content: '';
             position: absolute;
-            top: 30px;
-            right: 30px;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .mods-nav a:hover {
+            color: var(--accent-light);
+        }
+
+        .mods-nav a:hover::after {
+            width: 100%;
+        }
+
+        .close-mods {
             background: none;
             border: none;
             color: var(--text);
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            padding: 5px 10px;
         }
 
         .close-mods:hover {
@@ -286,6 +325,7 @@
         .tab-content {
             display: none;
             animation: fadeIn 0.5s ease;
+            padding-top: 20px;
         }
 
         .tab-content.active {
@@ -394,6 +434,7 @@
             display: block;
             text-align: center;
             width: 100%;
+            margin-top: 20px;
         }
 
         .get-btn::before {
@@ -514,7 +555,7 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-links, .mods-nav {
                 gap: 15px;
                 margin-left: 20px;
             }
@@ -531,6 +572,11 @@
             .tab-btn {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            .mods-header {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
@@ -553,7 +599,14 @@
 
     <!-- Mods Section (Hidden by default) -->
     <section class="mods-section" id="mods-section">
-        <button class="close-mods">&times;</button>
+        <div class="mods-header">
+            <div class="logo">MONOHUB</div>
+            <div class="mods-nav">
+                <a href="#" class="home-link">HOME</a>
+                <a href="https://discord.gg/yxruActV" target="_blank">DISCORD</a>
+            </div>
+            <button class="close-mods">&times;</button>
+        </div>
 
         <h2 class="section-title animate__animated animate__fadeIn">OUR CHEAT MODULES</h2>
 
@@ -649,10 +702,13 @@
         const exploreModsBtn = document.getElementById('explore-mods');
         const modsSection = document.getElementById('mods-section');
         const closeModsBtn = document.querySelector('.close-mods');
+        const homeLink = document.querySelector('.home-link');
 
         function showModsSection() {
             modsSection.classList.add('active');
             document.body.style.overflow = 'hidden';
+            // Scroll to top of mods section
+            modsSection.scrollTo(0, 0);
         }
 
         function hideModsSection() {
@@ -673,6 +729,11 @@
             hideModsSection();
         });
 
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            hideModsSection();
+        });
+
         // Tab System Functionality
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
@@ -688,6 +749,9 @@
                 // Add active class to clicked button and corresponding content
                 this.classList.add('active');
                 document.getElementById(tabId).classList.add('active');
+
+                // Scroll to top of tab content
+                document.getElementById(tabId).scrollIntoView({ behavior: 'smooth' });
             });
         });
 
